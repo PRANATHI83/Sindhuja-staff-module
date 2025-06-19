@@ -244,5 +244,5 @@ app.delete('/api/employees/:empId', async (req, res) => {
 
 // Start server
 app.listen(port, () => {
-    console.log(`Server running on http://3.110.28.1:${port}`);
+    console.log(`Server running on http://13.233.115.205:${port}`);
 });
