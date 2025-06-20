@@ -1,4 +1,4 @@
-# Use Node.js image
+# Use Node.js base image
 FROM node:18
 
 # Set working directory
@@ -8,10 +8,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy source files
+# Copy app source
 COPY . .
 
-# Expose port and start server
+# Expose the app port
 EXPOSE 3010
+
+# Start the server
 CMD ["node", "server.js"]
 
