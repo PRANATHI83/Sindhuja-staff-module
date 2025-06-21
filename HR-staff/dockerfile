@@ -1,6 +1,0 @@
-FROM nginx:alpine
-
-COPY . /usr/share/nignx/html
-
-EXPOSE 80
-
