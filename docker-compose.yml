@@ -5,13 +5,13 @@ services:
     image: postgres:13
     container_name: staff_postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin1023
       POSTGRES_DB: staff_management
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin1234
     ports:
       - "5440:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - staff-network
@@ -19,25 +19,25 @@ services:
   backend:
     build: ./Backend
     container_name: staff_backend
-    ports:
-      - "3010:3010"
     depends_on:
       - postgres
+    environment:
+      PORT: 3010
+    ports:
+      - "3010:3010"
     networks:
       - staff-network
 
   hr-staff:
     build: ./HR-staff
-    container_name: staff_hr
+    container_name: hr_staff_ui
     ports:
       - "8019:80"
-    depends_on:
-      - backend
     networks:
       - staff-network
 
 volumes:
-  pgdata:
+  postgres_data:
 
 networks:
   staff-network:
