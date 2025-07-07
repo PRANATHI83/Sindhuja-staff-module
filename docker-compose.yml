@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_DB: staff_management
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin1234
+      POSTGRES_PASSWORD: admin123
     ports:
-      - "5440:5432"
+      - "5205:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -22,9 +22,9 @@ services:
     depends_on:
       - postgres
     environment:
-      PORT: 3010
+      PORT: 3205
     ports:
-      - "3010:3010"
+      - "3205:3205"
     networks:
       - staff-network
 
@@ -32,7 +32,7 @@ services:
     build: ./HR-staff
     container_name: hr_staff_ui
     ports:
-      - "8019:80"
+      - "8010:80"
     networks:
       - staff-network
 
