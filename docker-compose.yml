@@ -11,14 +11,14 @@ services:
     ports:
       - "5205:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata-staff:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - staff-network
 
   backend:
     build: ./Backend
-    container_name: staff_backend
+    container_name: backend-staff
+    ports:
+      - "3006:3006"
     depends_on:
       - postgres
     environment:
@@ -28,17 +28,15 @@ services:
     networks:
       - staff-network
 
-  hr-staff:
+  hr-staff-ui:
     build: ./HR-staff
-    container_name: hr_staff_ui
+    container_name: hr-staff-ui
     ports:
       - "8010:80"
     networks:
       - staff-network
 
-volumes:
-  postgres_data:
 
-networks:
-  staff-network:
+volumes:
+  pgdata-staff:
 
